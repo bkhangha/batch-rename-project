@@ -37,7 +37,7 @@
             <ToolBarTray Grid.ColumnSpan="2">
                 <ToolBar>
                     <Separator></Separator>
-                    <Button Name="btnRefresh" Click="RefreshButton_Click_1" Width="100">
+                    <Button Name="btnRefresh" Click="RefreshButton_Click" Width="100">
                         <StackPanel Orientation="Horizontal" Height="35" Width="84">
                             <Image Source="Images/refresh.png" HorizontalAlignment="Left" />
                             <TextBlock Text="Refresh" VerticalAlignment="Center" FontWeight="SemiBold" Margin="5" />

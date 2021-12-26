@@ -18,9 +18,13 @@ namespace BatchRename
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
-    public class NewCaseArgs : StringArgs
-    {
-        public int style { get; set; } //1: All Uppercase, 2: All lowercase, 3: UpperCase the first character each word
+    //public class NewCaseArgs : StringArgs
+    //{
+    //    public int style { get; set; } //1: All Uppercase, 2: All lowercase, 3: UpperCase the first character each word
+    //}
+
+    public class PascalCaseArgs : StringArgs 
+    { 
     }
 
     public class RemovePatternArgs : StringArgs
@@ -32,7 +36,7 @@ namespace BatchRename
     {
     }
 
-    public class FullnameNormalizeArgs : StringArgs
+    public class LowerAndRemoveSpaceArgs : StringArgs
     {
     }
 
@@ -123,98 +127,98 @@ namespace BatchRename
         }
     }
 
-    public class NewCaseMethod : StringMethod, INotifyPropertyChanged
-    {
-        public override string Name => "New Case";
+    //public class NewCaseMethod : StringMethod, INotifyPropertyChanged
+    //{
+    //    public override string Name => "New Case";
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    //    public event PropertyChangedEventHandler PropertyChanged;
 
-        public override StringMethod Clone()
-        {
-            var oldArgs = Args as NewCaseArgs;
-            return new NewCaseMethod()
-            {
-                Args = new NewCaseArgs()
-                {
-                    style = oldArgs.style
-                }
-            };
-        }
+    //    public override StringMethod Clone()
+    //    {
+    //        var oldArgs = Args as NewCaseArgs;
+    //        return new NewCaseMethod()
+    //        {
+    //            Args = new NewCaseArgs()
+    //            {
+    //                style = oldArgs.style
+    //            }
+    //        };
+    //    }
 
-        public override void Config()
-        {
-            var screen = new NewCaseMethodControl(Args);
-            if (screen.ShowDialog() == true)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
-            }
-        }
+    //    public override void Config()
+    //    {
+    //        var screen = new NewCaseMethodControl(Args);
+    //        if (screen.ShowDialog() == true)
+    //        {
+    //            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+    //        }
+    //    }
 
-        public override string Operate(string origin, bool isFileName)
-        {
-            var args = Args as NewCaseArgs;
-            if (isFileName == true)
-            {
-                string name = Path.GetFileNameWithoutExtension(origin);
-                string extension = Path.GetExtension(origin);
-                if (args.style == 1)
-                {
-                    name = name.ToUpper();
-                }
-                else if (args.style == 2)
-                {
-                    name = name.ToLower();
-                }
-                else
-                {
-                    name = name.ToLower();
-                    TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-                    name = cultInfo.ToTitleCase(name);
-                }
-                return (name + extension);
-            }
-            else
-            {
-                if (args.style == 1)
-                {
-                    return origin.ToUpper();
-                }
-                else if (args.style == 2)
-                {
-                    return origin.ToLower();
-                }
-                else
-                {
-                    origin = origin.ToLower();
-                    TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-                    string res = cultInfo.ToTitleCase(origin);
-                    return res;
-                }
-            }
-        }
+    //    public override string Operate(string origin, bool isFileName)
+    //    {
+    //        var args = Args as NewCaseArgs;
+    //        if (isFileName == true)
+    //        {
+    //            string name = Path.GetFileNameWithoutExtension(origin);
+    //            string extension = Path.GetExtension(origin);
+    //            if (args.style == 1)
+    //            {
+    //                name = name.ToUpper();
+    //            }
+    //            else if (args.style == 2)
+    //            {
+    //                name = name.ToLower();
+    //            }
+    //            else
+    //            {
+    //                name = name.ToLower();
+    //                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
+    //                name = cultInfo.ToTitleCase(name);
+    //            }
+    //            return (name + extension);
+    //        }
+    //        else
+    //        {
+    //            if (args.style == 1)
+    //            {
+    //                return origin.ToUpper();
+    //            }
+    //            else if (args.style == 2)
+    //            {
+    //                return origin.ToLower();
+    //            }
+    //            else
+    //            {
+    //                origin = origin.ToLower();
+    //                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
+    //                string res = cultInfo.ToTitleCase(origin);
+    //                return res;
+    //            }
+    //        }
+    //    }
 
-        public override string Description
-        {
-            get
-            {
-                var args = Args as NewCaseArgs;
+    //    public override string Description
+    //    {
+    //        get
+    //        {
+    //            var args = Args as NewCaseArgs;
 
-                if (args.style == 1)
-                {
-                    return "Uppercase all letters";
-                }
-                if (args.style == 2)
-                {
-                    return "Lowercase all letters";
-                }
-                if (args.style == 3)
-                {
-                    return "Only Uppercase the first letter of each word";
-                }
-                return "error";
-            }
-        }
-    }
+    //            if (args.style == 1)
+    //            {
+    //                return "Uppercase all letters";
+    //            }
+    //            if (args.style == 2)
+    //            {
+    //                return "Lowercase all letters";
+    //            }
+    //            if (args.style == 3)
+    //            {
+    //                return "Only Uppercase the first letter of each word";
+    //            }
+    //            return "error";
+    //        }
+    //    }
+    //}
 
     public class RemovePatternMethod : StringMethod, INotifyPropertyChanged
     {
@@ -277,23 +281,23 @@ namespace BatchRename
         {
             get
             {
-                return "Removes all beginning and ending white-space characters";
+                return "Remove all space from the beginning and the ending of the filename.";
             }
         }
     }
 
-    public class FullnameNormalizeMethod : StringMethod, INotifyPropertyChanged
+    public class LowerAndRemoveSpaceMethod : StringMethod, INotifyPropertyChanged
     {
-        public override string Name => "Fullname Normalize";
+        public override string Name => "Lower And Remove Space";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public override StringMethod Clone()
         {
-            var oldArgs = Args as FullnameNormalizeArgs;
-            return new FullnameNormalizeMethod()
+            var oldArgs = Args as LowerAndRemoveSpaceArgs;
+            return new LowerAndRemoveSpaceMethod()
             {
-                Args = new FullnameNormalizeArgs()
+                Args = new LowerAndRemoveSpaceArgs()
                 {
                 }
             };
@@ -310,30 +314,26 @@ namespace BatchRename
             {
                 string name = Path.GetFileNameWithoutExtension(origin);
                 string extension = Path.GetExtension(origin);
-                //Viet hoa cac chu cai dau cua moi tu
+
                 name = name.ToLower();
-                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-                name = cultInfo.ToTitleCase(name);
 
                 //Xoa bo cac khoang trang dau va cuoi
                 name = name.Trim();
 
                 //Xoa bo cac khoang trang thua
-                name = System.Text.RegularExpressions.Regex.Replace(name, @"\s+", " ");
+                name = System.Text.RegularExpressions.Regex.Replace(name, @"\s+", "");
 
                 return (name + extension);
             }
             else
             {
                 origin = origin.ToLower();
-                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-                origin = cultInfo.ToTitleCase(origin);
 
                 //Xoa bo cac khoang trang dau va cuoi
                 origin = origin.Trim();
 
                 //Xoa bo cac khoang trang thua
-                origin = System.Text.RegularExpressions.Regex.Replace(origin, @"\s+", " ");
+                origin = System.Text.RegularExpressions.Regex.Replace(origin, @"\s+", "");
 
                 return origin;
             }
@@ -343,7 +343,7 @@ namespace BatchRename
         {
             get
             {
-                return "Remove all extra white spaces and Uppercase the first letter of each word";
+                return "Convert all characters to lowercase, remove all spaces";
             }
         }
     }
@@ -498,6 +498,56 @@ namespace BatchRename
                 return (name + extension);
             }
             return origin;
+        }
+    }
+
+    public class PascalCaseMethod : StringMethod, INotifyPropertyChanged
+    {
+        public override string Name => "Pascal Case";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public override StringMethod Clone()
+        {
+            return new PascalCaseMethod()
+            {
+            };
+        }
+
+        public override void Config()
+        {
+            MessageBox.Show("Don't need to config this method");
+        }
+
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as PascalCaseArgs;
+            if (isFileName == true)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+
+                name = name.ToLower();
+                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
+                name = cultInfo.ToTitleCase(name);
+
+                return (name + extension);
+            }
+            else
+            {
+                origin = origin.ToLower();
+                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
+                string res = cultInfo.ToTitleCase(origin);
+                return res;
+            }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return "Change filename to Pascal Case (seperated by space)";
+            }
         }
     }
 }

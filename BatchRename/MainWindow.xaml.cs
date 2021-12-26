@@ -36,16 +36,8 @@ namespace BatchRename
             //Get Preset
             Directory.CreateDirectory(pathPreset);
             getPreset();
-
-            //Load methods
-            //var movePrototype = new MoveMethod()
-            //{
-            //    Args = new MoveArgs()
-            //    {
-            //        FrontToEnd = false,
-            //    }
-            //};
-
+            
+            // Load available methods
             var changeExtensionPrototype = new ChangeExtensionMethod()
             {
                 Args = new ChangeExtensionArgs()
@@ -55,13 +47,13 @@ namespace BatchRename
                 }
             };
 
-            var newCasePrototype = new NewCaseMethod()
-            {
-                Args = new NewCaseArgs()
-                {
-                    style = 3,
-                }
-            };
+            //var newCasePrototype = new NewCaseMethod()
+            //{
+            //    Args = new NewCaseArgs()
+            //    {
+            //        style = 3,
+            //    }
+            //};
 
             var trimPrototype = new TrimMethod()
             {
@@ -70,19 +62,6 @@ namespace BatchRename
                 }
             };
 
-            var fullNameNormalizePrototype = new FullnameNormalizeMethod()
-            {
-                Args = new FullnameNormalizeArgs()
-                {
-                }
-            };
-
-            //var uniqueNamePrototype = new UniqueNameMethod()
-            //{
-            //    Args = new UniqueNameArgs()
-            //    {
-            //    }
-            //};
             var addPrefixPrototype = new AddPrefixMethod()
             {
                 Args = new AddPrefixArgs()
@@ -104,16 +83,28 @@ namespace BatchRename
                 }
             };
 
-            //_prototype.Add(movePrototype);
-            _prototype.Add(changeExtensionPrototype);
-            _prototype.Add(newCasePrototype);
-            _prototype.Add(trimPrototype);
-            _prototype.Add(fullNameNormalizePrototype);
+            var pascalCasePrototype = new PascalCaseMethod()
+            {
+                Args = new PascalCaseArgs()
+                {
+                }
+            };
 
+            var lowerAndRemoveSpacePrototype = new LowerAndRemoveSpaceMethod()
+            {
+                Args = new LowerAndRemoveSpaceArgs()
+                {
+                }
+            };
+
+            _prototype.Add(changeExtensionPrototype);
+            //_prototype.Add(newCasePrototype);
+            _prototype.Add(trimPrototype);
             _prototype.Add(addPrefixPrototype);
             _prototype.Add(addSuffixPrototype);
             _prototype.Add(replaceSpaceToDotPrototype);
-            //_prototype.Add(uniqueNamePrototype);
+            _prototype.Add(lowerAndRemoveSpacePrototype);
+            _prototype.Add(pascalCasePrototype);
 
             MethodCombobox.ItemsSource = _prototype;
             operationListBox.ItemsSource = _actions;
@@ -139,10 +130,6 @@ namespace BatchRename
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-        }
-
-        private void RefreshButton_Click_1(object sender, RoutedEventArgs e)
-        {
             _listapplyactions.Clear();
             _actions.Clear();
             _listfilenames.Clear();
@@ -153,7 +140,7 @@ namespace BatchRename
 
         private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Batch rename written by Pham Hoang Phuoc Duy - MSSV: 1712018", "Help");
+            MessageBox.Show("No help implemented!", "Help");
         }
 
         private void BtnStartBatch_Click(object sender, RoutedEventArgs e)
@@ -707,7 +694,6 @@ namespace BatchRename
                     presetfile.Close();
 
                     List<string> data = new List<string>();
-                    int i = 0;
                     foreach (var action in _listapplyactions)
                     {
                         data.Add(action.Name);

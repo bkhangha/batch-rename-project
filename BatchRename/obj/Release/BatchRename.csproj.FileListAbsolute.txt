@@ -29,7 +29,6 @@ C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\bin\Release\Batc
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\AddPrefixMethodControl.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\AddSuffixMethodControl.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\MainWindow.g.cs
-C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\NewCaseMethodControl.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\PresetControl.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\App.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\BatchRename_MarkupCompile.cache
@@ -37,7 +36,6 @@ C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\Batc
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\AddPrefixMethodControl.baml
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\AddSuffixMethodControl.baml
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\MainWindow.baml
-C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\NewCaseMethodControl.baml
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\PresetControl.baml
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\BatchRename.g.resources
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\BatchRename.Properties.Resources.resources
@@ -48,3 +46,4 @@ C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\Batc
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\BatchRename.pdb
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\ChangeExtensionMethodControl.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\ChangeExtensionMethodControl.baml
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\BatchRename.csproj.AssemblyReference.cache

@@ -68,9 +68,6 @@
     <Compile Include="AddSuffixMethodControl.xaml.cs">
       <DependentUpon>AddSuffixMethodControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewCaseMethodControl.xaml.cs">
-      <DependentUpon>NewCaseMethodControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PresetControl.xaml.cs">
       <DependentUpon>PresetControl.xaml</DependentUpon>
     </Compile>
@@ -99,10 +96,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewCaseMethodControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PresetControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
