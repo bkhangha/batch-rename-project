@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\
+E:\Study\Nam3-Ki1\Window\DoAn\DoAn1\Git\batch-rename-project\BatchRename\obj\Debug\
 BatchRename
 none
 false
 DEBUG;TRACE
-C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\App.xaml
-41488191203
+E:\Study\Nam3-Ki1\Window\DoAn\DoAn1\Git\batch-rename-project\BatchRename\App.xaml
+658936082
 
-10-1088461711
-15653127954
-MainWindow.xaml;NewCaseMethodControl.xaml;PresetControl.xaml;ReplaceMethodControl.xaml;
+12-622410464
+151939836855
+AddPrefixMethodControl.xaml;AddSuffixMethodControl.xaml;MainWindow.xaml;NewCaseMethodControl.xaml;PresetControl.xaml;ReplaceMethodControl.xaml;
 
 False
 

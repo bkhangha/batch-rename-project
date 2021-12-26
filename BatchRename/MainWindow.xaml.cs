@@ -95,12 +95,38 @@ namespace BatchRename
             //    {
             //    }
             //};
+            var addPrefixPrototype = new AddPrefixMethod()
+            {
+                Args = new AddPrefixArgs()
+                {
+                    text = "",
+                }
+            };
+            var addSuffixPrototype = new AddSuffixMethod()
+            {
+                Args = new AddSuffixArgs()
+                {
+                    text = "",
+                }
+            };
+            var replaceSpaceToDotPrototype = new ReplaceSpaceToDotMethod()
+            {
+                Args = new ReplaceSpaceToDotArg()
+                {
+
+                }
+            };
+
 
             //_prototype.Add(movePrototype);
             _prototype.Add(replacePrototype);
             _prototype.Add(newCasePrototype);
             _prototype.Add(trimPrototype);
             _prototype.Add(fullNameNormalizePrototype);
+
+            _prototype.Add(addPrefixPrototype);
+            _prototype.Add(addSuffixPrototype);
+            _prototype.Add(replaceSpaceToDotPrototype);
             //_prototype.Add(uniqueNamePrototype);
 
 

@@ -62,6 +62,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddPrefixMethodControl.xaml.cs">
+      <DependentUpon>AddPrefixMethodControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddSuffixMethodControl.xaml.cs">
+      <DependentUpon>AddSuffixMethodControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewCaseMethodControl.xaml.cs">
       <DependentUpon>NewCaseMethodControl.xaml</DependentUpon>
     </Compile>
@@ -73,6 +79,14 @@
     </Compile>
     <Compile Include="StringDefine.cs" />
     <Compile Include="StringOperationContract.cs" />
+    <Page Include="AddPrefixMethodControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddSuffixMethodControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

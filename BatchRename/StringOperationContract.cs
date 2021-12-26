@@ -55,7 +55,165 @@ namespace BatchRename
     //public class UniqueNameArgs : StringArgs
     //{
     //}
+    public class AddPrefixArgs : StringArgs
+    {
+        public string text { get; set; }
+    }
 
+    public class AddSuffixArgs : StringArgs
+    {
+        public string text { get; set; }
+    }
+    public class ReplaceSpaceToDotArg : StringArgs
+    {
+
+    }
+
+    public class ReplaceSpaceToDotMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public override string Name => "Replace Space to Dot";
+        public override string Description
+        {
+            get
+            {
+                var args = Args as ReplaceSpaceToDotArg;
+
+                return $"Replace  ' ' to '.'";
+            }
+        }
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as ReplaceSpaceToDotArg;
+            return new ReplaceSpaceToDotMethod()
+            {
+                Args = new ReplaceSpaceToDotArg()
+                {
+
+                }
+            };
+        }
+
+        public override void Config()
+        {
+            MessageBox.Show("Dont't need to config this method");
+        }
+
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as ReplaceSpaceToDotArg;
+
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+                name = name.Replace(" ", ".");
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
+
+    public class AddPrefixMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public override string Name => "Add Prefix";
+        public override string Description
+        {
+            get
+            {
+                var args = Args as AddPrefixArgs;
+
+                return $"AddPrefix  '{args.text}'";
+            }
+        }
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as AddPrefixArgs;
+            return new AddPrefixMethod()
+            {
+                Args = new AddPrefixArgs()
+                {
+                    text = oldArgs.text,
+                }
+            };
+        }
+
+        public override void Config()
+        {
+            var screen = new AddPrefixMethodControl(Args);
+            if (screen.ShowDialog() == true)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+            }
+        }
+
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as AddPrefixArgs;
+            var text = args.text;
+
+
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+                name = text + name;
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
+    public class AddSuffixMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public override string Name => "Add Suffix";
+        public override string Description
+        {
+            get
+            {
+                var args = Args as AddSuffixArgs;
+
+                return $"AddSuffix  '{args.text}'";
+            }
+        }
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as AddSuffixArgs;
+            return new AddSuffixMethod()
+            {
+                Args = new AddSuffixArgs()
+                {
+                    text = oldArgs.text,
+                }
+            };
+        }
+
+        public override void Config()
+        {
+            var screen = new AddSuffixMethodControl(Args);
+            if (screen.ShowDialog() == true)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+            }
+        }
+
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as AddSuffixArgs;
+            var text = args.text;
+
+
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+                name = name + text;
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
 
 
     public abstract class StringMethod : INotifyPropertyChanged
