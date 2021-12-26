@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BatchRename
 {
     public class StringDefine : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void RaiseEventHandler(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private string value;
+
         public string Value
         {
             get => value;
@@ -27,9 +25,10 @@ namespace BatchRename
         }
     }
 
-    class FileName : StringDefine
+    internal class FileName : StringDefine
     {
         private string error;
+
         public string Error
         {
             get => error;
@@ -41,6 +40,7 @@ namespace BatchRename
         }
 
         private string path;
+
         public string Path
         {
             get => path;
@@ -52,6 +52,7 @@ namespace BatchRename
         }
 
         private string previewFilename;
+
         public string PreviewFilename
         {
             get => previewFilename;
@@ -63,6 +64,7 @@ namespace BatchRename
         }
 
         private string batchState;
+
         public string BatchState
         {
             get => batchState;
@@ -72,7 +74,6 @@ namespace BatchRename
                 RaiseEventHandler("BatchState");
             }
         }
-
 
         public string FailedActions { get; set; } = "";
 
@@ -86,6 +87,7 @@ namespace BatchRename
     public class Foldername : StringDefine
     {
         private string error;
+
         public string Error
         {
             get => error;
@@ -97,6 +99,7 @@ namespace BatchRename
         }
 
         private string path;
+
         public string Path
         {
             get => path;
@@ -108,6 +111,7 @@ namespace BatchRename
         }
 
         private string previewFoldername;
+
         public string PreviewFoldername
         {
             get => previewFoldername;
@@ -118,8 +122,8 @@ namespace BatchRename
             }
         }
 
-
         private string batchState;
+
         public string BatchState
         {
             get => batchState;
@@ -129,7 +133,6 @@ namespace BatchRename
                 RaiseEventHandler("BatchState");
             }
         }
-
 
         public string FailedActions { get; set; } = "";
 
@@ -154,6 +157,4 @@ namespace BatchRename
         /// <param name="action"></param>
         public delegate void NewActionEventHandler();
     }
-
-
 }

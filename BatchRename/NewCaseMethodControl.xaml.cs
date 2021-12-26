@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace BatchRename
 {
@@ -19,13 +7,13 @@ namespace BatchRename
     /// </summary>
     public partial class NewCaseMethodControl : Window
     {
-        NewCaseArgs newArgs;
+        private NewCaseArgs newArgs;
+
         public NewCaseMethodControl(StringArgs args)
         {
             InitializeComponent();
             newArgs = args as NewCaseArgs;
             NewCaseStyleCombobox.SelectedIndex = newArgs.style - 1;
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

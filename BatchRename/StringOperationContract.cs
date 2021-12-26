@@ -1,40 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.ComponentModel;
-using PropertyChanged;
+using System.Globalization;
+using System.IO;
 using System.Windows;
 
 namespace BatchRename
 {
     public class StringArgs
     {
-
     }
 
-    public class ReplaceArgs : StringArgs, INotifyPropertyChanged
+    public class ChangeExtensionArgs : StringArgs, INotifyPropertyChanged
     {
         public string From { get; set; }
         public string To { get; set; }
-        //1: Name Area, 2: Extension Area
-        public int Area { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
-    //public class MoveArgs : StringArgs
-    //{
-    //    public bool FrontToEnd { get; set; }
-    //}
-
     public class NewCaseArgs : StringArgs
     {
         public int style { get; set; } //1: All Uppercase, 2: All lowercase, 3: UpperCase the first character each word
-
     }
 
     public class RemovePatternArgs : StringArgs
@@ -44,17 +30,12 @@ namespace BatchRename
 
     public class TrimArgs : StringArgs
     {
-
     }
 
     public class FullnameNormalizeArgs : StringArgs
     {
-
     }
 
-    //public class UniqueNameArgs : StringArgs
-    //{
-    //}
     public class AddPrefixArgs : StringArgs
     {
         public string text { get; set; }
@@ -64,157 +45,10 @@ namespace BatchRename
     {
         public string text { get; set; }
     }
+
     public class ReplaceSpaceToDotArg : StringArgs
     {
-
     }
-
-    public class ReplaceSpaceToDotMethod : StringMethod, INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public override string Name => "Replace Space to Dot";
-        public override string Description
-        {
-            get
-            {
-                var args = Args as ReplaceSpaceToDotArg;
-
-                return $"Replace  ' ' to '.'";
-            }
-        }
-        public override StringMethod Clone()
-        {
-            var oldArgs = Args as ReplaceSpaceToDotArg;
-            return new ReplaceSpaceToDotMethod()
-            {
-                Args = new ReplaceSpaceToDotArg()
-                {
-
-                }
-            };
-        }
-
-        public override void Config()
-        {
-            MessageBox.Show("Dont't need to config this method");
-        }
-
-        public override string Operate(string origin, bool isFileName)
-        {
-            var args = Args as ReplaceSpaceToDotArg;
-
-            if (isFileName)
-            {
-                string name = Path.GetFileNameWithoutExtension(origin);
-                string extension = Path.GetExtension(origin);
-                name = name.Replace(" ", ".");
-                return (name + extension);
-            }
-            return origin;
-        }
-    }
-
-    public class AddPrefixMethod : StringMethod, INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public override string Name => "Add Prefix";
-        public override string Description
-        {
-            get
-            {
-                var args = Args as AddPrefixArgs;
-
-                return $"AddPrefix  '{args.text}'";
-            }
-        }
-        public override StringMethod Clone()
-        {
-            var oldArgs = Args as AddPrefixArgs;
-            return new AddPrefixMethod()
-            {
-                Args = new AddPrefixArgs()
-                {
-                    text = oldArgs.text,
-                }
-            };
-        }
-
-        public override void Config()
-        {
-            var screen = new AddPrefixMethodControl(Args);
-            if (screen.ShowDialog() == true)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
-            }
-        }
-
-        public override string Operate(string origin, bool isFileName)
-        {
-            var args = Args as AddPrefixArgs;
-            var text = args.text;
-
-
-            if (isFileName)
-            {
-                string name = Path.GetFileNameWithoutExtension(origin);
-                string extension = Path.GetExtension(origin);
-                name = text + name;
-                return (name + extension);
-            }
-            return origin;
-        }
-    }
-    public class AddSuffixMethod : StringMethod, INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public override string Name => "Add Suffix";
-        public override string Description
-        {
-            get
-            {
-                var args = Args as AddSuffixArgs;
-
-                return $"AddSuffix  '{args.text}'";
-            }
-        }
-        public override StringMethod Clone()
-        {
-            var oldArgs = Args as AddSuffixArgs;
-            return new AddSuffixMethod()
-            {
-                Args = new AddSuffixArgs()
-                {
-                    text = oldArgs.text,
-                }
-            };
-        }
-
-        public override void Config()
-        {
-            var screen = new AddSuffixMethodControl(Args);
-            if (screen.ShowDialog() == true)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
-            }
-        }
-
-        public override string Operate(string origin, bool isFileName)
-        {
-            var args = Args as AddSuffixArgs;
-            var text = args.text;
-
-
-            if (isFileName)
-            {
-                string name = Path.GetFileNameWithoutExtension(origin);
-                string extension = Path.GetExtension(origin);
-                name = name + text;
-                return (name + extension);
-            }
-            return origin;
-        }
-    }
-
 
     public abstract class StringMethod : INotifyPropertyChanged
     {
@@ -225,165 +59,69 @@ namespace BatchRename
         public event PropertyChangedEventHandler PropertyChanged;
 
         public abstract string Operate(string origin, bool isFileName);
-        public abstract StringMethod Clone();
-        public abstract void Config();
-        public virtual string Description { get; set; }
 
+        public abstract StringMethod Clone();
+
+        public abstract void Config();
+
+        public virtual string Description { get; set; }
     }
 
-    public class ReplaceMethod : StringMethod, INotifyPropertyChanged
+    public class ChangeExtensionMethod : StringMethod, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public override string Name => "Replace";
+        public override string Name => "Change extension";
 
         public override string Description
         {
             get
             {
-                var args = Args as ReplaceArgs;
-                string area = (args.Area == 1) ? "Name" : "Extension";
-                return $"Replace  '{args.From}' to '{args.To}' in {area} ";
+                var args = Args as ChangeExtensionArgs;
+                return $"Replace extension '{args.From}' to '{args.To}' ";
             }
         }
 
         public override StringMethod Clone()
         {
-            var oldArgs = Args as ReplaceArgs;
-            return new ReplaceMethod()
+            var oldArgs = Args as ChangeExtensionArgs;
+            return new ChangeExtensionMethod()
             {
-                Args = new ReplaceArgs()
+                Args = new ChangeExtensionArgs()
                 {
                     From = oldArgs.From,
                     To = oldArgs.To,
-                    Area = oldArgs.Area,
                 }
             };
         }
 
         public override string Operate(string origin, bool isFileName)
         {
-            var args = Args as ReplaceArgs;
+            var args = Args as ChangeExtensionArgs;
             var from = args.From;
             var to = args.To;
-            var area = args.Area;
-
 
             if (isFileName)
             {
                 string name = Path.GetFileNameWithoutExtension(origin);
                 string extension = Path.GetExtension(origin);
-                if (area == 1)
-                {
-                    name = name.Replace(from, to);
-                }
-                else
-                {
-                    extension = extension.Replace(from, to);
-                }
+
+                extension = extension.Replace(from, to);
+
                 return (name + extension);
             }
             return origin.Replace(from, to);
-
         }
 
         public override void Config()
         {
-            var screen = new ReplaceMethodControl(Args);
+            var screen = new ChangeExtensionMethodControl(Args);
             if (screen.ShowDialog() == true)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
             }
         }
     }
-
-    //public class MoveMethod : StringMethod, INotifyPropertyChanged
-    //{
-    //    public override string Name => "Move";
-
-    //    public event PropertyChangedEventHandler PropertyChanged;
-
-    //    public override StringMethod Clone()
-    //    {
-    //        var oldArgs = Args as MoveArgs;
-    //        return new MoveMethod()
-    //        {
-    //            Args = new MoveArgs()
-    //            {
-    //                FrontToEnd = oldArgs.FrontToEnd,
-    //            }
-    //        };
-    //    }
-
-    //    public override void Config()
-    //    {
-    //        var screen = new MoveMethodControl(Args);
-    //        if (screen.ShowDialog() == true)
-    //        {
-    //            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
-    //        }
-    //    }
-
-    //    public override string Operate(string origin, bool isFileName)
-    //    {
-    //        var args = Args as MoveArgs;
-    //        if (!isFileName)
-    //        {
-    //            if (args.FrontToEnd == true)
-    //            {
-    //                return origin.Substring(13) + origin.Substring(0, 13);
-    //            }
-    //            else
-    //            {
-    //                if (origin.Length >= 13)
-    //                {
-    //                    return origin.Substring(origin.Length - 13) + origin.Substring(0, origin.Length - 13);
-    //                }
-    //                else
-    //                {
-    //                    throw new IndexOutOfRangeException("The file name lenght is less than 13");
-    //                }
-    //            }
-    //        }
-    //        else
-    //        {
-    //            string name = Path.GetFileNameWithoutExtension(origin);
-    //            string extension = Path.GetExtension(origin);
-    //            if (args.FrontToEnd == true)
-    //            {
-    //                return (name.Substring(13) + name.Substring(0, 13) + extension);
-
-    //            }
-    //            else
-    //            {
-    //                if (name.Length >= 13)
-    //                {
-    //                    return (name.Substring(name.Length - 13) + name.Substring(0, name.Length - 13) + extension);
-    //                }
-    //                else
-    //                {
-    //                    throw new IndexOutOfRangeException("The file name lenght is less than 13");
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    public override string Description
-    //    {
-    //        get
-    //        {
-    //            var args = Args as MoveArgs;
-    //            if (args.FrontToEnd)
-    //            {
-    //                return "Move 13 letters at front to end";
-    //            }
-    //            else
-    //            {
-    //                return "Move 13 letter at end to front";
-    //            }
-    //        }
-    //    }
-    //}
 
     public class NewCaseMethod : StringMethod, INotifyPropertyChanged
     {
@@ -432,7 +170,6 @@ namespace BatchRename
                     name = name.ToLower();
                     TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
                     name = cultInfo.ToTitleCase(name);
-
                 }
                 return (name + extension);
             }
@@ -454,7 +191,6 @@ namespace BatchRename
                     return res;
                 }
             }
-
         }
 
         public override string Description
@@ -523,7 +259,6 @@ namespace BatchRename
             {
                 Args = new TrimArgs()
                 {
-
                 }
             };
         }
@@ -560,7 +295,6 @@ namespace BatchRename
             {
                 Args = new FullnameNormalizeArgs()
                 {
-
                 }
             };
         }
@@ -614,51 +348,156 @@ namespace BatchRename
         }
     }
 
-    //public class UniqueNameMethod : StringMethod, INotifyPropertyChanged
-    //{
-    //    public override string Name => "Unique Name";
+    public class ReplaceSpaceToDotMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
 
-    //    public event PropertyChangedEventHandler PropertyChanged;
+        public override string Name => "Replace Space to Dot";
 
-    //    public override StringMethod Clone()
-    //    {
-    //        var oldArgs = Args as UniqueNameArgs;
-    //        return new UniqueNameMethod()
-    //        {
-    //            Args = new UniqueNameArgs()
-    //            {
+        public override string Description
+        {
+            get
+            {
+                var args = Args as ReplaceSpaceToDotArg;
 
-    //            }
-    //        };
-    //    }
+                return $"Replace  ' ' to '.'";
+            }
+        }
 
-    //    public override void Config()
-    //    {
-    //        MessageBox.Show("Don't need to config this method");
-    //    }
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as ReplaceSpaceToDotArg;
+            return new ReplaceSpaceToDotMethod()
+            {
+                Args = new ReplaceSpaceToDotArg()
+                {
+                }
+            };
+        }
 
-    //    public override string Operate(string origin, bool isFileName)
-    //    {
-    //        if (!isFileName)
-    //        {
-    //            string res = System.Guid.NewGuid().ToString();
-    //            return res;
-    //        }
-    //        else
-    //        {
-    //            string extension = Path.GetExtension(origin);
-    //            string res = System.Guid.NewGuid().ToString();
-    //            return res + extension;
-    //        }
+        public override void Config()
+        {
+            MessageBox.Show("Dont't need to config this method");
+        }
 
-    //    }
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as ReplaceSpaceToDotArg;
 
-    //    public override string Description
-    //    {
-    //        get
-    //        {
-    //            return "Change the name to GUID";
-    //        }
-    //    }
-    //}
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+                name = name.Replace(" ", ".");
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
+
+    public class AddPrefixMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public override string Name => "Add Prefix";
+
+        public override string Description
+        {
+            get
+            {
+                var args = Args as AddPrefixArgs;
+
+                return $"AddPrefix  '{args.text}'";
+            }
+        }
+
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as AddPrefixArgs;
+            return new AddPrefixMethod()
+            {
+                Args = new AddPrefixArgs()
+                {
+                    text = oldArgs.text,
+                }
+            };
+        }
+
+        public override void Config()
+        {
+            var screen = new AddPrefixMethodControl(Args);
+            if (screen.ShowDialog() == true)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+            }
+        }
+
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as AddPrefixArgs;
+            var text = args.text;
+
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+                name = text + name;
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
+
+    public class AddSuffixMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public override string Name => "Add Suffix";
+
+        public override string Description
+        {
+            get
+            {
+                var args = Args as AddSuffixArgs;
+
+                return $"AddSuffix  '{args.text}'";
+            }
+        }
+
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as AddSuffixArgs;
+            return new AddSuffixMethod()
+            {
+                Args = new AddSuffixArgs()
+                {
+                    text = oldArgs.text,
+                }
+            };
+        }
+
+        public override void Config()
+        {
+            var screen = new AddSuffixMethodControl(Args);
+            if (screen.ShowDialog() == true)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+            }
+        }
+
+        public override string Operate(string origin, bool isFileName)
+        {
+            var args = Args as AddSuffixArgs;
+            var text = args.text;
+
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+                name = name + text;
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
 }

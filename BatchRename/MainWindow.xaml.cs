@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BatchRename
 {
@@ -29,16 +19,17 @@ namespace BatchRename
         {
             InitializeComponent();
         }
-        bool flagPreviewed = false; //true: previewed, false: have not previewed
-        bool flagError = false; //true: there is errors, false: no errors
-        string pathPreset = AppDomain.CurrentDomain.BaseDirectory + "//Preset";
 
-        List<StringMethod> _prototype = new List<StringMethod>();
-        BindingList<StringMethod> _actions = new BindingList<StringMethod>();
-        BindingList<FileName> _listfilenames = new BindingList<FileName>();
-        BindingList<Foldername> _listfoldernames = new BindingList<Foldername>();
-        List<StringMethod> _listapplyactions = new List<StringMethod>();
-        BindingList<string> _listpreset = new BindingList<string>();
+        private bool flagPreviewed = false; //true: previewed, false: have not previewed
+        private bool flagError = false; //true: there is errors, false: no errors
+        private string pathPreset = AppDomain.CurrentDomain.BaseDirectory + "//Preset";
+
+        private List<StringMethod> _prototype = new List<StringMethod>();
+        private BindingList<StringMethod> _actions = new BindingList<StringMethod>();
+        private BindingList<FileName> _listfilenames = new BindingList<FileName>();
+        private BindingList<Foldername> _listfoldernames = new BindingList<Foldername>();
+        private List<StringMethod> _listapplyactions = new List<StringMethod>();
+        private BindingList<string> _listpreset = new BindingList<string>();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -46,8 +37,7 @@ namespace BatchRename
             Directory.CreateDirectory(pathPreset);
             getPreset();
 
-
-            //Load methods 
+            //Load methods
             //var movePrototype = new MoveMethod()
             //{
             //    Args = new MoveArgs()
@@ -56,9 +46,9 @@ namespace BatchRename
             //    }
             //};
 
-            var replacePrototype = new ReplaceMethod()
+            var changeExtensionPrototype = new ChangeExtensionMethod()
             {
-                Args = new ReplaceArgs()
+                Args = new ChangeExtensionArgs()
                 {
                     From = "",
                     To = ""
@@ -77,7 +67,6 @@ namespace BatchRename
             {
                 Args = new TrimArgs()
                 {
-
                 }
             };
 
@@ -85,7 +74,6 @@ namespace BatchRename
             {
                 Args = new FullnameNormalizeArgs()
                 {
-
                 }
             };
 
@@ -113,13 +101,11 @@ namespace BatchRename
             {
                 Args = new ReplaceSpaceToDotArg()
                 {
-
                 }
             };
 
-
             //_prototype.Add(movePrototype);
-            _prototype.Add(replacePrototype);
+            _prototype.Add(changeExtensionPrototype);
             _prototype.Add(newCasePrototype);
             _prototype.Add(trimPrototype);
             _prototype.Add(fullNameNormalizePrototype);
@@ -129,14 +115,11 @@ namespace BatchRename
             _prototype.Add(replaceSpaceToDotPrototype);
             //_prototype.Add(uniqueNamePrototype);
 
-
             MethodCombobox.ItemsSource = _prototype;
             operationListBox.ItemsSource = _actions;
             FileNameListView.ItemsSource = _listfilenames;
             FolderNameListView.ItemsSource = _listfoldernames;
             PresetCombobox.ItemsSource = _listpreset;
-
-
         }
 
         private void getPreset()
@@ -152,12 +135,10 @@ namespace BatchRename
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void RefreshButton_Click_1(object sender, RoutedEventArgs e)
@@ -180,7 +161,6 @@ namespace BatchRename
             //Check if there is no file and folder added
             if (_listfilenames.Count() == 0 && _listfoldernames.Count() == 0 || _listapplyactions.Count() == 0)
             {
-
                 if (_listapplyactions.Count() == 0)
                 {
                     MessageBox.Show("You haven't added method", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -189,7 +169,6 @@ namespace BatchRename
                 {
                     MessageBox.Show("No file and folder added", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
             }
             else
             {
@@ -232,7 +211,6 @@ namespace BatchRename
                         //Operate string first and rename
                         if (_listfilenames.Count() != 0)
                         {
-
                             btnPreviewFileName(this, new RoutedEventArgs());
 
                             foreach (var filename in _listfilenames)
@@ -272,7 +250,6 @@ namespace BatchRename
                                     }
                                 }
                             }
-
                         }
                         if (_listfoldernames.Count() != 0)
                         {
@@ -318,7 +295,6 @@ namespace BatchRename
                                     }
                                 }
                             }
-
                         }
                         MessageBox.Show("RENAME DONE !");
                     }
@@ -369,12 +345,10 @@ namespace BatchRename
                                 }
                             }
                         }
-
                     }
 
                     if (_listfoldernames.Count() != 0)
                     {
-
                         foreach (var foldername in _listfoldernames)
                         {
                             if (foldername.Error == "")
@@ -408,7 +382,6 @@ namespace BatchRename
                                         Directory.Move(oldName, tempName);
                                         Directory.Move(tempName, newName);
                                     }
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -436,7 +409,6 @@ namespace BatchRename
             image = button.Content as Image;
             if (image.Source == FindResource("Plus") as ImageSource)
             {
-
                 image.Source = FindResource("Minus") as ImageSource;
                 button.Content = image;
 
@@ -449,10 +421,6 @@ namespace BatchRename
                 button.Content = image;
                 button.IsChecked = false;
             }
-
-
-
-
         }
 
         private void BtnDelMethod_Click(object sender, RoutedEventArgs e)
@@ -468,7 +436,6 @@ namespace BatchRename
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void btnUpMostMethodPosition(object sender, RoutedEventArgs e)
@@ -493,12 +460,10 @@ namespace BatchRename
                 //operationListBox.SelectedItems.Add(_actions[numElement - 1]);
                 operationListBox.SelectedItems.Add(_actions[numElement - 1]);
             }
-
         }
 
         private void btnDownMethodPosition(object sender, RoutedEventArgs e)
         {
-
             int index = (operationListBox.Items.IndexOf(operationListBox.SelectedItem));
             if (index != (_actions.Count - 1) && index >= 0)
             {
@@ -518,15 +483,10 @@ namespace BatchRename
                 _actions.RemoveAt(index + 1);
                 operationListBox.SelectedItems.Add(_actions[index - 1]);
             }
-
-
-
-
         }
 
         private void BtnClearMethod_Click(object sender, RoutedEventArgs e)
         {
-
             _actions.Clear();
         }
 
@@ -549,12 +509,10 @@ namespace BatchRename
                     _listfilenames.Add(new FileName() { Value = newFilename, Path = path });
                 }
             }
-
         }
 
         private void btnAddFolder(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Forms.FolderBrowserDialog folderDlg = new System.Windows.Forms.FolderBrowserDialog();
 
             // show dialog
@@ -594,8 +552,6 @@ namespace BatchRename
 
                 filename.PreviewFilename = newFileName;
                 filename.Error = error;
-
-
             }
         }
 
@@ -619,7 +575,6 @@ namespace BatchRename
 
                 foldername.PreviewFoldername = newFolderName;
                 foldername.Error = error;
-
             }
         }
 
@@ -648,7 +603,6 @@ namespace BatchRename
 
         private void btnDownFoldernamePosition(object sender, RoutedEventArgs e)
         {
-
             int index = (FolderNameListView.Items.IndexOf(FolderNameListView.SelectedItem));
             if (index != (_listfoldernames.Count - 1) && index >= 0)
             {
@@ -742,32 +696,25 @@ namespace BatchRename
                 string folderPresetName = path + name;
                 string presetName = "";
 
-
                 var screen = new PresetControl();
                 if (screen.ShowDialog() == true)
                 {
                     presetName = "preset_" + PresetControl.presetName;
-
 
                     //Create file
                     string filename = folderPresetName + "//" + presetName;
                     var presetfile = File.Create(filename);
                     presetfile.Close();
 
-
                     List<string> data = new List<string>();
                     int i = 0;
                     foreach (var action in _listapplyactions)
                     {
                         data.Add(action.Name);
-
                     }
                     File.WriteAllLines(filename, data);
                 }
-
             }
-
-
         }
     }
 }

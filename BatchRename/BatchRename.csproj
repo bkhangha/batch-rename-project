@@ -74,8 +74,8 @@
     <Compile Include="PresetControl.xaml.cs">
       <DependentUpon>PresetControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReplaceMethodControl.xaml.cs">
-      <DependentUpon>ReplaceMethodControl.xaml</DependentUpon>
+    <Compile Include="ChangeExtensionMethodControl.xaml.cs">
+      <DependentUpon>ChangeExtensionMethodControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="StringDefine.cs" />
     <Compile Include="StringOperationContract.cs" />
@@ -107,7 +107,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReplaceMethodControl.xaml">
+    <Page Include="ChangeExtensionMethodControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

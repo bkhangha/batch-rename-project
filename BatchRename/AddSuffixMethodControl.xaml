@@ -9,9 +9,9 @@
 
     <Canvas Name="MainGrid">
 
-        <TextBlock Text="Suffix: " FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="106" Canvas.Top="21"/>
+        <TextBlock Text="Suffix: " FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="106" Canvas.Top="21" />
 
-        <TextBox Name="SuffixTextBox" Width="120" Height="20"  HorizontalAlignment="Right" Canvas.Left="160" Canvas.Top="21"/>
-        <Button Content="Apply" Name ="btnApplyArgs" Click="BtnApplyArgs_Click" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="80" Height="25" Canvas.Left="146" Canvas.Top="55"/>
+        <TextBox Name="SuffixTextBox" Width="120" Height="20"  HorizontalAlignment="Right" Canvas.Left="160" Canvas.Top="21" />
+        <Button Content="Apply" Name ="btnApplyArgs" Click="BtnApplyArgs_Click" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="80" Height="25" Canvas.Left="146" Canvas.Top="55" />
     </Canvas>
 </Window>

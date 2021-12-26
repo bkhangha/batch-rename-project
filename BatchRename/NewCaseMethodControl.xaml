@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="NewCaseMethodControl" Height="150" Width="400">
     <Canvas>
-        <TextBlock Text="Choose the style: " FontWeight="SemiBold" Canvas.Top="35" Canvas.Left="43"/>
+        <TextBlock Text="Choose the style: " FontWeight="SemiBold" Canvas.Top="35" Canvas.Left="43" />
         <ComboBox Name="NewCaseStyleCombobox" Width="214" Height="22" Canvas.Left="144" Canvas.Top="31">
-            <ComboBoxItem Content="All Uppercase" VerticalAlignment="Center"/>
-            <ComboBoxItem Content="All LowerCase" VerticalAlignment="Center"/>
-            <ComboBoxItem Content="Capitalize the first letter each word" VerticalAlignment="Center" IsSelected="True"/>
+            <ComboBoxItem Content="All Uppercase" VerticalAlignment="Center" />
+            <ComboBoxItem Content="All LowerCase" VerticalAlignment="Center" />
+            <ComboBoxItem Content="Capitalize the first letter each word" VerticalAlignment="Center" IsSelected="True" />
         </ComboBox>
-        <Button Click="Button_Click" Content="Apply" Width="80" Height="25" Canvas.Left="156" Canvas.Top="86"/>
+        <Button Click="Button_Click" Content="Apply" Width="80" Height="25" Canvas.Left="156" Canvas.Top="86" />
     </Canvas>
 </Window>
