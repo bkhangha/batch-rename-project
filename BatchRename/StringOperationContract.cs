@@ -384,7 +384,7 @@ namespace BatchRename
         {
             get
             {
-                return "Removes all leading and trailing white-space characters";
+                return "Removes all beginning and ending white-space characters";
             }
         }
     }

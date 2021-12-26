@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\ASUS\Downloads\BatchRename\BatchRename\obj\Debug\
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\
 BatchRename
 none
 false
 DEBUG;TRACE
-C:\Users\ASUS\Downloads\BatchRename\BatchRename\App.xaml
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\App.xaml
 41488191203
 
-11-1930821078
-151763906327
+10-1088461711
+15653127954
 MainWindow.xaml;NewCaseMethodControl.xaml;PresetControl.xaml;ReplaceMethodControl.xaml;
 
-True
+False
 
