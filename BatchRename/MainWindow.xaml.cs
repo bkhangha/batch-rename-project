@@ -219,6 +219,7 @@ namespace BatchRename
                                     string oldName = filename.Path + filename.Value;
                                     try
                                     {
+                                        
                                         // Duplication File Name
                                         if (File.Exists(newName))
                                         {
@@ -233,7 +234,9 @@ namespace BatchRename
                                             }
                                             if (messageBoxResult == MessageBoxResult.OK)
                                             {
-                                                newName += count.ToString();
+                                                //string fileNameTemp = filename.Value;
+                                                newName = HandleDuplication(filename.Value, count);
+                                                //newName += count.ToString();
                                             }
 
                                             File.Move(oldName, newName);
@@ -392,6 +395,14 @@ namespace BatchRename
                     }
                 }
             }
+        }
+
+        private string HandleDuplication(string origin, int count)
+        {
+            string name = Path.GetFileNameWithoutExtension(origin);
+            string extension = Path.GetExtension(origin);
+
+            return name + "(" + count.ToString() + ")" + extension;
         }
 
         private void MethodCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
