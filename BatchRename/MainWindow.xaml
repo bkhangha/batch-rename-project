@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Batch Rename" 
         Loaded="Window_Loaded"
-        Background="#F2FBFD"
+        Background="White"
         Height="{local:SettingBinding Height}"
         Width="{local:SettingBinding Width}"
         Left="{local:SettingBinding Left}"
@@ -139,7 +139,7 @@
                         </ToolBar>
                     </ToolBarTray>
                 </Border>
-                <ListBox  Name="operationListBox" Grid.Row="2" Background="#E0E0E0" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
+                <ListBox  Name="operationListBox" Grid.Row="2" Background="White" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
                     <ListBox.Resources>
                         <Style TargetType="ListBoxItem">
                             <Style.Triggers>
@@ -214,7 +214,7 @@
             </Grid>
         </Grid>
         <!--Start of Main Area-->
-        <TabControl Background="#E0E0E0" Grid.Column="1" Grid.Row="1">
+        <TabControl Background="White" Grid.Column="1" Grid.Row="1">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -286,7 +286,7 @@
                         <ToolBar>
                             <Button Click="btnAddFolder">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="Images/add_folder.png" Width="40" />
+                                    <Image Source="Images/add_folder.png" Width="35" />
                                     <TextBlock Text="Add Folder" FontWeight="SemiBold" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>

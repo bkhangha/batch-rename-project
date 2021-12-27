@@ -47,14 +47,6 @@ namespace BatchRename
                 }
             };
 
-            //var newCasePrototype = new NewCaseMethod()
-            //{
-            //    Args = new NewCaseArgs()
-            //    {
-            //        style = 3,
-            //    }
-            //};
-
             var trimPrototype = new TrimMethod()
             {
                 Args = new TrimArgs()
@@ -108,7 +100,6 @@ namespace BatchRename
             };
 
             _prototype.Add(changeExtensionPrototype);
-            //_prototype.Add(newCasePrototype);
             _prototype.Add(trimPrototype);
             _prototype.Add(addPrefixPrototype);
             _prototype.Add(addSuffixPrototype);

@@ -113,7 +113,7 @@ namespace BatchRename
 
                 extension = extension.Replace(from, to);
 
-                return (name + extension);
+                return name + extension;
             }
             return origin.Replace(from, to);
         }
@@ -166,7 +166,6 @@ namespace BatchRename
 
         public override StringMethod Clone()
         {
-            var oldArgs = Args as TrimArgs;
             return new TrimMethod()
             {
                 Args = new TrimArgs()
@@ -202,7 +201,6 @@ namespace BatchRename
 
         public override StringMethod Clone()
         {
-            var oldArgs = Args as LowerAndRemoveSpaceArgs;
             return new LowerAndRemoveSpaceMethod()
             {
                 Args = new LowerAndRemoveSpaceArgs()
@@ -231,7 +229,7 @@ namespace BatchRename
                 //Xoa bo cac khoang trang thua
                 name = System.Text.RegularExpressions.Regex.Replace(name, @"\s+", "");
 
-                return (name + extension);
+                return name + extension;
             }
             else
             {
@@ -266,15 +264,12 @@ namespace BatchRename
         {
             get
             {
-                var args = Args as ReplaceSpaceToDotArgs;
-
                 return $"Replace  ' ' to '.'";
             }
         }
 
         public override StringMethod Clone()
         {
-            var oldArgs = Args as ReplaceSpaceToDotArgs;
             return new ReplaceSpaceToDotMethod()
             {
                 Args = new ReplaceSpaceToDotArgs()
@@ -297,7 +292,7 @@ namespace BatchRename
                 string name = Path.GetFileNameWithoutExtension(origin);
                 string extension = Path.GetExtension(origin);
                 name = name.Replace(" ", ".");
-                return (name + extension);
+                return name + extension;
             }
             return origin;
         }
@@ -350,7 +345,7 @@ namespace BatchRename
                 string name = Path.GetFileNameWithoutExtension(origin);
                 string extension = Path.GetExtension(origin);
                 name = text + name;
-                return (name + extension);
+                return name + extension;
             }
             return origin;
         }
@@ -403,7 +398,7 @@ namespace BatchRename
                 string name = Path.GetFileNameWithoutExtension(origin);
                 string extension = Path.GetExtension(origin);
                 name = name + text;
-                return (name + extension);
+                return name + extension;
             }
             return origin;
         }
@@ -439,7 +434,7 @@ namespace BatchRename
                 TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
                 name = cultInfo.ToTitleCase(name);
 
-                return (name + extension);
+                return name + extension;
             }
             else
             {
@@ -515,7 +510,7 @@ namespace BatchRename
                 }
 
                 name = name + text;
-                return (name + extension);
+                return name + extension;
             }
             return origin;
         }
