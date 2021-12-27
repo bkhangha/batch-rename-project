@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Media;
 
 namespace BatchRename
@@ -419,10 +418,6 @@ namespace BatchRename
                 _actions.Remove(delete);
                 _listapplyactions.Remove(delete);
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
         }
 
         private void btnUpMostMethodPosition(object sender, RoutedEventArgs e)
