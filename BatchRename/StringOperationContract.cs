@@ -58,7 +58,6 @@ namespace BatchRename
     {
         public StringArgs Args { get; set; }
         public virtual string Name { get; set; }
-        public virtual string Error { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -281,7 +280,7 @@ namespace BatchRename
         {
             get
             {
-                return "Remove all space from the beginning and the ending of the filename.";
+                return "Remove all space from the beginning and the ending of the filename";
             }
         }
     }

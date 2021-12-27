@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace BatchRename
@@ -21,7 +22,6 @@ namespace BatchRename
         }
 
         private bool flagPreviewed = false; //true: previewed, false: have not previewed
-        private bool flagError = false; //true: there is errors, false: no errors
         private string pathPreset = AppDomain.CurrentDomain.BaseDirectory + "//Preset";
 
         private List<StringMethod> _prototype = new List<StringMethod>();

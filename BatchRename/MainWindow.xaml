@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BatchRename"
         mc:Ignorable="d"
-        Title="Batch Rename" Height="700" Width="1200"
+        Title="Batch Rename" 
         Loaded="Window_Loaded"
-        Background="#F2FBFD">
+        Background="#F2FBFD"
+        Height="{local:SettingBinding Height}"
+        Width="{local:SettingBinding Width}"
+        Left="{local:SettingBinding Left}"
+        Top="{local:SettingBinding Top}">
     <Window.Resources>
         <BitmapImage x:Key="Plus" UriSource="Images/plus.png" />
         <BitmapImage x:Key="Minus" UriSource="Images/minus.png" />
@@ -38,21 +42,21 @@
                 <ToolBar>
                     <Separator></Separator>
                     <Button Name="btnRefresh" Click="RefreshButton_Click" Width="100">
-                        <StackPanel Orientation="Horizontal" Height="35" Width="84">
+                        <StackPanel Orientation="Horizontal" Height="25" Width="84">
                             <Image Source="Images/refresh.png" HorizontalAlignment="Left" />
                             <TextBlock Text="Refresh" VerticalAlignment="Center" FontWeight="SemiBold" Margin="5" />
                         </StackPanel>
                     </Button>
                     <Separator></Separator>
                     <Button Name="btnHelp" Click="BtnHelp_Click" Width="100">
-                        <StackPanel Orientation="Horizontal" Height="35" Width="84">
+                        <StackPanel Orientation="Horizontal" Height="25" Width="84">
                             <Image Source="Images/help.png" HorizontalAlignment="Left" />
                             <TextBlock Text="Help" VerticalAlignment="Center" FontWeight="SemiBold" Margin="5" />
                         </StackPanel>
                     </Button>
                     <Separator></Separator>
                     <Button Name="btnStartBatch" Click="BtnStartBatch_Click" Width="110">
-                        <StackPanel Orientation="Horizontal" Height="35" Width="110">
+                        <StackPanel Orientation="Horizontal" Height="25" Width="110">
                             <Image Source="Images/play.png" HorizontalAlignment="Left" />
                             <TextBlock Text="Start Batch" VerticalAlignment="Center" FontWeight="SemiBold" Margin="5" />
                         </StackPanel>
@@ -74,21 +78,26 @@
                     <ToolBarTray>
                         <ToolBar>
                             <Separator />
-                            <Image Source="Images/add.png" Width="35" VerticalAlignment="Center" />
+                            <Image Source="Images/add.png" Width="32" VerticalAlignment="Center" />
                             <StackPanel Orientation="Vertical" Width="100" Margin="0,0,5,0">
                                 <TextBlock Text="Add Methods" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Center" />
-                                <ComboBox SelectionChanged="MethodCombobox_SelectionChanged"  Name="MethodCombobox">
+                                <ComboBox SelectionChanged="MethodCombobox_SelectionChanged"  Name="MethodCombobox" Height="22" Margin="0,0,0,0" FontSize="10">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Name,Mode=OneWay}" />
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ComboBoxItem}">
+                                            <Setter Property="FontSize" Value="10" />
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
                                 </ComboBox>
                             </StackPanel>
                             <Separator />
                             <Button  Click="BtnClearMethod_Click">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                                    <Image Source="Images/clear.png" Width="35" />
+                                    <Image Source="Images/clear.png" Width="32" />
                                     <TextBlock Text="Clear" VerticalAlignment="Center" FontWeight="SemiBold" />
                                 </StackPanel>
                             </Button>

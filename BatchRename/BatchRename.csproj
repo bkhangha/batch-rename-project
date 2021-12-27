@@ -68,6 +68,7 @@
     <Compile Include="AddSuffixMethodControl.xaml.cs">
       <DependentUpon>AddSuffixMethodControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingBindingExtension.cs" />
     <Compile Include="PresetControl.xaml.cs">
       <DependentUpon>PresetControl.xaml</DependentUpon>
     </Compile>
