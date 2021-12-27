@@ -50,8 +50,15 @@ namespace BatchRename
         public string text { get; set; }
     }
 
-    public class ReplaceSpaceToDotArg : StringArgs
+    public class ReplaceSpaceToDotArgs : StringArgs
     {
+    }
+
+    public class AddCounterArgs : StringArgs
+    {
+        public string start { get; set; }
+        public string step { get; set; }
+        public string num { get; set; }
     }
 
     public abstract class StringMethod : INotifyPropertyChanged
@@ -61,7 +68,7 @@ namespace BatchRename
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public abstract string Operate(string origin, bool isFileName);
+        public abstract string Operate(string origin, bool isFileName,int count);
 
         public abstract StringMethod Clone();
 
@@ -98,7 +105,7 @@ namespace BatchRename
             };
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             var args = Args as ChangeExtensionArgs;
             var from = args.From;
@@ -242,7 +249,7 @@ namespace BatchRename
             throw new NotImplementedException();
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             var args = Args as RemovePatternArgs;
             return origin.Replace(args.pattern, "");
@@ -271,7 +278,7 @@ namespace BatchRename
             MessageBox.Show("Dont't need to config this method");
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             return origin.Trim();
         }
@@ -307,7 +314,7 @@ namespace BatchRename
             MessageBox.Show("Don't need to config this method");
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             if (isFileName)
             {
@@ -357,7 +364,7 @@ namespace BatchRename
         {
             get
             {
-                var args = Args as ReplaceSpaceToDotArg;
+                var args = Args as ReplaceSpaceToDotArgs;
 
                 return $"Replace  ' ' to '.'";
             }
@@ -365,10 +372,10 @@ namespace BatchRename
 
         public override StringMethod Clone()
         {
-            var oldArgs = Args as ReplaceSpaceToDotArg;
+            var oldArgs = Args as ReplaceSpaceToDotArgs;
             return new ReplaceSpaceToDotMethod()
             {
-                Args = new ReplaceSpaceToDotArg()
+                Args = new ReplaceSpaceToDotArgs()
                 {
                 }
             };
@@ -379,9 +386,9 @@ namespace BatchRename
             MessageBox.Show("Dont't need to config this method");
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
-            var args = Args as ReplaceSpaceToDotArg;
+            var args = Args as ReplaceSpaceToDotArgs;
 
             if (isFileName)
             {
@@ -431,7 +438,7 @@ namespace BatchRename
             }
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             var args = Args as AddPrefixArgs;
             var text = args.text;
@@ -484,7 +491,7 @@ namespace BatchRename
             }
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             var args = Args as AddSuffixArgs;
             var text = args.text;
@@ -518,7 +525,7 @@ namespace BatchRename
             MessageBox.Show("Don't need to config this method");
         }
 
-        public override string Operate(string origin, bool isFileName)
+        public override string Operate(string origin, bool isFileName, int count)
         {
             var args = Args as PascalCaseArgs;
             if (isFileName == true)
@@ -549,4 +556,67 @@ namespace BatchRename
             }
         }
     }
+
+    public class AddCounterMethod : StringMethod, INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public override string Name => "Add Counter";
+        public override string Description
+        {
+            get
+            {
+                var args = Args as AddCounterArgs;
+                return $"Add Counter start at '{args.start}' with step = '{args.step}' and number of digit = '{args.num}' ";
+            }
+        }
+        public override StringMethod Clone()
+        {
+            var oldArgs = Args as AddCounterArgs;
+            return new AddCounterMethod()
+            {
+                Args = new AddCounterArgs()
+                {
+                    start = oldArgs.start,
+                    step = oldArgs.step,
+                    num=oldArgs.num,
+                }
+            };
+        }
+
+        public override void Config()
+        {
+            var screen = new AddCounterMethodControl(Args);
+            if (screen.ShowDialog() == true)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
+            }
+        }
+
+        public override string Operate(string origin, bool isFileName, int count)
+        {
+            var args = Args as AddCounterArgs;
+            int start = Int32.Parse(args.start);
+            int step = Int32.Parse(args.step);
+            int num = Int32.Parse(args.num);
+            
+            if (isFileName)
+            {
+                string name = Path.GetFileNameWithoutExtension(origin);
+                string extension = Path.GetExtension(origin);
+
+                int counter = start + step * count;
+                string text = counter.ToString();
+                for(int i = 1; i < num; i++)
+                {
+                    text = "0" + text;
+                }
+
+                name = name + text;
+                return (name + extension);
+            }
+            return origin;
+        }
+    }
+
 }

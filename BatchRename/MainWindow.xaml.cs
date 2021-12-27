@@ -13,6 +13,7 @@ namespace BatchRename
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -77,7 +78,7 @@ namespace BatchRename
             };
             var replaceSpaceToDotPrototype = new ReplaceSpaceToDotMethod()
             {
-                Args = new ReplaceSpaceToDotArg()
+                Args = new ReplaceSpaceToDotArgs()
                 {
                 }
             };
@@ -96,6 +97,16 @@ namespace BatchRename
                 }
             };
 
+            var addCounterPrototype = new AddCounterMethod()
+            {
+                Args = new AddCounterArgs()
+                {
+                    start = "",
+                    step = "",
+                    num = "",
+                }
+            };
+
             _prototype.Add(changeExtensionPrototype);
             //_prototype.Add(newCasePrototype);
             _prototype.Add(trimPrototype);
@@ -104,6 +115,7 @@ namespace BatchRename
             _prototype.Add(replaceSpaceToDotPrototype);
             _prototype.Add(lowerAndRemoveSpacePrototype);
             _prototype.Add(pascalCasePrototype);
+            _prototype.Add(addCounterPrototype);
 
             MethodCombobox.ItemsSource = _prototype;
             operationListBox.ItemsSource = _actions;
@@ -207,6 +219,7 @@ namespace BatchRename
                                     string oldName = filename.Path + filename.Value;
                                     try
                                     {
+                                        // Duplication File Name
                                         if (File.Exists(newName))
                                         {
                                             int count = 1;
@@ -250,6 +263,7 @@ namespace BatchRename
                                     string tempName = foldername.Path + "temp";
                                     try
                                     {
+                                        // Duplication Folder Name
                                         if (Directory.Exists(newName))
                                         {
                                             int count = 1;
@@ -516,19 +530,23 @@ namespace BatchRename
 
         private void btnPreviewFileName(object sender, RoutedEventArgs e)
         {
+            int count = 0;
             foreach (var filename in _listfilenames)
             {
                 string newFileName = filename.Value;
                 string error = "";
+                
                 foreach (var action in _listapplyactions)
                 {
                     try
                     {
-                        newFileName = action.Operate(newFileName, true);
+                        newFileName = action.Operate(newFileName, true,count);
+                        count++;
                     }
                     catch (Exception er)
                     {
                         error = er.GetType().Name;
+                        //count--;
                     }
                 }
 
@@ -539,19 +557,23 @@ namespace BatchRename
 
         private void btnPreviewFolderName(object sender, RoutedEventArgs e)
         {
+            int count = 0;
             foreach (var foldername in _listfoldernames)
             {
                 string newFolderName = foldername.Value;
                 string error = "";
+                
                 foreach (var action in _listapplyactions)
                 {
                     try
                     {
-                        newFolderName = action.Operate(newFolderName, true);
+                        newFolderName = action.Operate(newFolderName, true,count);
+                        count++;
                     }
                     catch (Exception er)
                     {
                         error = er.GetType().Name;
+                        //count--;
                     }
                 }
 

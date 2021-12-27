@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCounterMethodControl.xaml.cs">
+      <DependentUpon>AddCounterMethodControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddPrefixMethodControl.xaml.cs">
       <DependentUpon>AddPrefixMethodControl.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
     </Compile>
     <Compile Include="StringDefine.cs" />
     <Compile Include="StringOperationContract.cs" />
+    <Page Include="AddCounterMethodControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddPrefixMethodControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
