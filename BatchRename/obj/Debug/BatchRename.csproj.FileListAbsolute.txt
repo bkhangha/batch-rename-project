@@ -70,3 +70,6 @@ C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\Change
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\AddPrefixMethodControl.baml
 C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\AddSuffixMethodControl.baml
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\BatchRename.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\AddCounterMethodControl.baml
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Debug\AddCounterMethodControl.g.cs

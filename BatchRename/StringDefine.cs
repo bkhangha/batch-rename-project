@@ -145,16 +145,8 @@ namespace BatchRename
 
     public static class TypeEventHandler
     {
-        /// <summary>
-        /// event when new argument comes
-        /// </summary>
-        /// <param name="arguments"></param>
         public delegate void NewArgumentEventHandler(List<string> arguments);
 
-        /// <summary>
-        /// event when new instance of action comes
-        /// </summary>
-        /// <param name="action"></param>
         public delegate void NewActionEventHandler();
     }
 }

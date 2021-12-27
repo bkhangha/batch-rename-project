@@ -18,11 +18,6 @@ namespace BatchRename
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
-    //public class NewCaseArgs : StringArgs
-    //{
-    //    public int style { get; set; } //1: All Uppercase, 2: All lowercase, 3: UpperCase the first character each word
-    //}
-
     public class PascalCaseArgs : StringArgs 
     { 
     }
@@ -132,99 +127,6 @@ namespace BatchRename
             }
         }
     }
-
-    //public class NewCaseMethod : StringMethod, INotifyPropertyChanged
-    //{
-    //    public override string Name => "New Case";
-
-    //    public event PropertyChangedEventHandler PropertyChanged;
-
-    //    public override StringMethod Clone()
-    //    {
-    //        var oldArgs = Args as NewCaseArgs;
-    //        return new NewCaseMethod()
-    //        {
-    //            Args = new NewCaseArgs()
-    //            {
-    //                style = oldArgs.style
-    //            }
-    //        };
-    //    }
-
-    //    public override void Config()
-    //    {
-    //        var screen = new NewCaseMethodControl(Args);
-    //        if (screen.ShowDialog() == true)
-    //        {
-    //            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Description"));
-    //        }
-    //    }
-
-    //    public override string Operate(string origin, bool isFileName)
-    //    {
-    //        var args = Args as NewCaseArgs;
-    //        if (isFileName == true)
-    //        {
-    //            string name = Path.GetFileNameWithoutExtension(origin);
-    //            string extension = Path.GetExtension(origin);
-    //            if (args.style == 1)
-    //            {
-    //                name = name.ToUpper();
-    //            }
-    //            else if (args.style == 2)
-    //            {
-    //                name = name.ToLower();
-    //            }
-    //            else
-    //            {
-    //                name = name.ToLower();
-    //                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-    //                name = cultInfo.ToTitleCase(name);
-    //            }
-    //            return (name + extension);
-    //        }
-    //        else
-    //        {
-    //            if (args.style == 1)
-    //            {
-    //                return origin.ToUpper();
-    //            }
-    //            else if (args.style == 2)
-    //            {
-    //                return origin.ToLower();
-    //            }
-    //            else
-    //            {
-    //                origin = origin.ToLower();
-    //                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-    //                string res = cultInfo.ToTitleCase(origin);
-    //                return res;
-    //            }
-    //        }
-    //    }
-
-    //    public override string Description
-    //    {
-    //        get
-    //        {
-    //            var args = Args as NewCaseArgs;
-
-    //            if (args.style == 1)
-    //            {
-    //                return "Uppercase all letters";
-    //            }
-    //            if (args.style == 2)
-    //            {
-    //                return "Lowercase all letters";
-    //            }
-    //            if (args.style == 3)
-    //            {
-    //                return "Only Uppercase the first letter of each word";
-    //            }
-    //            return "error";
-    //        }
-    //    }
-    //}
 
     public class RemovePatternMethod : StringMethod, INotifyPropertyChanged
     {
