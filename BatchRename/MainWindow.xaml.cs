@@ -46,14 +46,12 @@ namespace BatchRename
                     To = ""
                 }
             };
-
             var trimPrototype = new TrimMethod()
             {
                 Args = new TrimArgs()
                 {
                 }
             };
-
             var addPrefixPrototype = new AddPrefixMethod()
             {
                 Args = new AddPrefixArgs()
@@ -74,21 +72,18 @@ namespace BatchRename
                 {
                 }
             };
-
             var pascalCasePrototype = new PascalCaseMethod()
             {
                 Args = new PascalCaseArgs()
                 {
                 }
             };
-
             var lowerAndRemoveSpacePrototype = new LowerAndRemoveSpaceMethod()
             {
                 Args = new LowerAndRemoveSpaceArgs()
                 {
                 }
             };
-
             var addCounterPrototype = new AddCounterMethod()
             {
                 Args = new AddCounterArgs()
@@ -225,8 +220,7 @@ namespace BatchRename
                                             }
                                             if (messageBoxResult == MessageBoxResult.OK)
                                             {
-                                                //string fileNameTemp = filename.Value;
-                                                newName = HandleDuplication(filename.Value, count);
+                                                newName = filename.Path + HandleDuplication(filename.Value, count);
                                                 //newName += count.ToString();
                                             }
 
