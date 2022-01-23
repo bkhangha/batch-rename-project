@@ -121,10 +121,6 @@ namespace BatchRename
             }
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             _listapplyactions.Clear();
@@ -142,7 +138,7 @@ namespace BatchRename
 
         private void BtnStartBatch_Click(object sender, RoutedEventArgs e)
         {
-            //Check if there is no file and folder added
+            // Check if there is no file and folder added 
             if (_listfilenames.Count() == 0 && _listfoldernames.Count() == 0 || _listapplyactions.Count() == 0)
             {
                 if (_listapplyactions.Count() == 0)
@@ -156,7 +152,7 @@ namespace BatchRename
             }
             else
             {
-                //Show Warning box when user haven't previewed yet
+                // Show Warning box when user haven't previewed yet
                 foreach (var filename in _listfilenames)
                 {
                     if (filename.PreviewFilename == null)
@@ -176,7 +172,7 @@ namespace BatchRename
                     flagPreviewed = true;
                 }
 
-                //Haven't previewed
+                // If user is not previewed changes
                 if (!flagPreviewed)
                 {
                     string message = "You haven't previewed yet. Do you want to preview before starting batch ?";
@@ -191,8 +187,7 @@ namespace BatchRename
                     }
                     if (result == MessageBoxResult.No)
                     {
-                        //Start batch here
-                        //Operate string first and rename
+                        // Start batching progress here
                         if (_listfilenames.Count() != 0)
                         {
                             btnPreviewFileName(this, new RoutedEventArgs());
@@ -205,7 +200,7 @@ namespace BatchRename
                                     string oldName = filename.Path + filename.Value;
                                     try
                                     {
-                                        // Duplication File Name
+                                        // Duplication File Name Handle
                                         if (File.Exists(newName))
                                         {
                                             int count = 1;
@@ -220,7 +215,7 @@ namespace BatchRename
                                             if (messageBoxResult == MessageBoxResult.OK)
                                             {
                                                 newName = filename.Path + HandleDuplication(filename.Value, count);
-                                                //newName += count.ToString();
+                                                // newName += count.ToString();
                                             }
 
                                             File.Move(oldName, newName);
@@ -250,7 +245,7 @@ namespace BatchRename
                                     string tempName = foldername.Path + "temp";
                                     try
                                     {
-                                        // Duplication Folder Name
+                                        // Duplication Folder Name Handle
                                         if (Directory.Exists(newName))
                                         {
                                             int count = 1;
@@ -283,17 +278,12 @@ namespace BatchRename
                                 }
                             }
                         }
-                       
-                    }
-                    else
-                    {
-                        MessageBox.Show("There is no folder to rename!");
                     }
                 }
                 else
                 {
-                    //Have previewed so just directly rename, don't need to Operate string again
-                    if (_listfilenames.Count() != 0)
+                    // If user have previewed so just proceed rename, don't need to Operate string again
+                    if (_listfilenames.Count() != 0) // File case
                     {
                         foreach (var filename in _listfilenames)
                         {
@@ -335,7 +325,7 @@ namespace BatchRename
                         MessageBox.Show("Renamed done.");
                     }
 
-                    if (_listfoldernames.Count() != 0)
+                    if (_listfoldernames.Count() != 0) // Folder case
                     {
                         foreach (var foldername in _listfoldernames)
                         {
