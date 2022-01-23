@@ -76,3 +76,6 @@ E:\Study\Nam3-Ki1\Window\DoAn\DoAn1\Git-Final\batch-rename-project\BatchRename\o
 E:\Study\Nam3-Ki1\Window\DoAn\DoAn1\Git-Final\batch-rename-project\BatchRename\obj\Release\BatchRename.csproj.Fody.CopyLocal.cache
 E:\Study\Nam3-Ki1\Window\DoAn\DoAn1\Git-Final\batch-rename-project\BatchRename\obj\Release\BatchRename.exe
 E:\Study\Nam3-Ki1\Window\DoAn\DoAn1\Git-Final\batch-rename-project\BatchRename\obj\Release\BatchRename.pdb
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\BatchRename.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\AddCounterMethodControl.baml
+C:\Users\ASUS\Documents\GitHub\batch-rename-project\BatchRename\obj\Release\AddCounterMethodControl.g.cs

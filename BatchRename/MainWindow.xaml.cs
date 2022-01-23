@@ -205,7 +205,6 @@ namespace BatchRename
                                     string oldName = filename.Path + filename.Value;
                                     try
                                     {
-                                        
                                         // Duplication File Name
                                         if (File.Exists(newName))
                                         {
@@ -284,11 +283,11 @@ namespace BatchRename
                                 }
                             }
                         }
-                        MessageBox.Show("RENAME DONE !");
+                       
                     }
                     else
                     {
-                        //do nothing
+                        MessageBox.Show("There is no folder to rename!");
                     }
                 }
                 else
@@ -333,6 +332,7 @@ namespace BatchRename
                                 }
                             }
                         }
+                        MessageBox.Show("Renamed done.");
                     }
 
                     if (_listfoldernames.Count() != 0)
@@ -377,6 +377,7 @@ namespace BatchRename
                                 }
                             }
                         }
+                        MessageBox.Show("Renamed done.");
                     }
                 }
             }
