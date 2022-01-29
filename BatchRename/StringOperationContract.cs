@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace BatchRename
 {
-    public class StringArgs
+    public class StringArgs // prototype of argument of an method
     {
     }
 
@@ -56,6 +56,7 @@ namespace BatchRename
         public string num { get; set; }
     }
 
+    // prototype methods
     public abstract class StringMethod : INotifyPropertyChanged
     {
         public StringArgs Args { get; set; }
@@ -223,10 +224,10 @@ namespace BatchRename
 
                 name = name.ToLower();
 
-                //Xoa bo cac khoang trang dau va cuoi
+                // delete space at start and end
                 name = name.Trim();
 
-                //Xoa bo cac khoang trang thua
+                // remove extra spaces
                 name = System.Text.RegularExpressions.Regex.Replace(name, @"\s+", "");
 
                 return name + extension;
@@ -235,10 +236,10 @@ namespace BatchRename
             {
                 origin = origin.ToLower();
 
-                //Xoa bo cac khoang trang dau va cuoi
+                // delete space at start and end
                 origin = origin.Trim();
 
-                //Xoa bo cac khoang trang thua
+                // remove extra spaces
                 origin = System.Text.RegularExpressions.Regex.Replace(origin, @"\s+", "");
 
                 return origin;

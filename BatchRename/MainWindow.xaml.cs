@@ -131,11 +131,6 @@ namespace BatchRename
             getPreset();
         }
 
-        private void BtnHelp_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("No help implemented!", "Help");
-        }
-
         private void BtnStartBatch_Click(object sender, RoutedEventArgs e)
         {
             // Check if there is no file and folder added 
@@ -215,7 +210,6 @@ namespace BatchRename
                                             if (messageBoxResult == MessageBoxResult.OK)
                                             {
                                                 newName = filename.Path + HandleDuplication(filename.Value, count);
-                                                // newName += count.ToString();
                                             }
 
                                             File.Move(oldName, newName);
@@ -391,7 +385,7 @@ namespace BatchRename
         private void BtnAddMethodArgs_Click(object sender, RoutedEventArgs e)
         {
             ToggleButton button = (ToggleButton)sender;
-            //Thay đổi icon của button dựa trên trạng thái đóng mở của listitem
+            // Change button icon base on its state
             Image image = new Image();
             image = button.Content as Image;
             if (image.Source == FindResource("Plus") as ImageSource)
@@ -440,7 +434,6 @@ namespace BatchRename
             {
                 _actions.Insert(numElement, _actions[index]);
                 _actions.RemoveAt(index);
-                //operationListBox.SelectedItems.Add(_actions[numElement - 1]);
                 operationListBox.SelectedItems.Add(_actions[numElement - 1]);
             }
         }
@@ -658,7 +651,6 @@ namespace BatchRename
             {
                 _listfilenames.Insert(numElement, _listfilenames[index]);
                 _listfilenames.RemoveAt(index);
-                //operationListBox.SelectedItems.Add(_actions[numElement - 1]);
                 FileNameListView.SelectedItems.Add(_listfilenames[numElement - 1]);
             }
         }

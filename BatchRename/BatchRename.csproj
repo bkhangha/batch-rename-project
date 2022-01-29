@@ -149,7 +149,6 @@
     <Resource Include="Images\down_most.png" />
     <Resource Include="Images\file.png" />
     <Resource Include="Images\folder.png" />
-    <Resource Include="Images\help.png" />
     <Resource Include="Images\minus.png" />
     <Resource Include="Images\play.png" />
     <Resource Include="Images\plus.png" />
